@@ -32,10 +32,11 @@ Painel do RabbitMQ
 - Body / Method Post
 
       {
-      "text" : {
-        "temperatura" : 20.0,
-        "umidade" : 10.0
-       }
+        "text" : {
+          "idDrone":1,
+          "temperatura" : 35,
+          "umidade" : 10.0
+        }
       }
     
 # Usando o Exchange Direct 
