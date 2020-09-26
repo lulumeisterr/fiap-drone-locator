@@ -10,7 +10,7 @@
 
 # Fluxo
 
-  Servico 1 : Producer
+  Servico 1 : Producer/Drone
   
      1 - Recebemos os valores que sao inseridos em tela
      2 - Adicionamos essa informacao em um banco embarcado (h2)
@@ -20,7 +20,10 @@
   
      1 - Consumimos a mensagem da fila
      2 - Executamos a regra de Temperatura >= 35 e umidade <= 15 no momento em que existe dados na fila
-     3 - Encaminhamos o email 
+     3 - Encaminhamos o email apos 1 minuto de espera
+     
+  
+  Servico 3: Localizacao google maps
      
      
  
@@ -40,11 +43,27 @@ Painel do RabbitMQ
   - user e password : guest
   
 # H2
-    - Macos : jdbc:h2:~/fiapstockdatabase;DB_CLOSE_ON_EXIT=FALSE
-    - Windows : jdbc:h2:file:/home/#userexemplo/fiapstockdatabase
-    - H2 Console : http://localhost:8081/h2-console/
-  
-# EndPoint para publicar na fila
+    - Macos : jdbc:h2:~/fiapDroneDatabase;DB_CLOSE_ON_EXIT=FALSE
+    - Windows : jdbc:h2:file:/home/#userexemplo/fiapDroneDatabase
+    
+  Interface
+    - H2 Console : http://localhost:8080/h2-console/
+
+# Endpoint para persistir os dados de tela
+
+- localhost:8080/drones/
+- Body / Method Post
+
+    {
+        "id": 1,
+        "latitude": 11,
+        "longitude": 111,
+        "temperatura": 30,
+        "umidade": 40
+    }
+
+
+# Endpoint para publicar na fila
 
 - localhost:8001/send
 - Body / Method Post
@@ -61,3 +80,10 @@ Painel do RabbitMQ
 
 - Ao Executar o projeto as filas sao criadas automaticamente
 - Criacao do exchange do tipo direct que recebe a mensagem enviada pelo produtor e encaminha a mensagem para a fila destinada do produtor.
+
+
+# Usando patterns de deadLetter
+  
+  - Caso o consumidor esteja inativo , nos atribuimos todas as mensagens 
+  que nao foi realizada para uma fila de espera , podendo ser movidas novamente para serem consumidas
+ 
