@@ -43,8 +43,8 @@ Painel do RabbitMQ
   - user e password : guest
   
 # H2
-    - Macos : jdbc:h2:~/fiapstockdatabase;DB_CLOSE_ON_EXIT=FALSE
-    - Windows : jdbc:h2:file:/home/#userexemplo/fiapstockdatabase
+    - Macos : jdbc:h2:~/fiapDroneDatabase;DB_CLOSE_ON_EXIT=FALSE
+    - Windows : jdbc:h2:file:/home/#userexemplo/fiapDroneDatabase
     - H2 Console : http://localhost:8081/h2-console/
 
 # Endpoint para persistir os dados de tela
