@@ -8,6 +8,24 @@
   Além da primeira função também é possível acionar o rastreamento do drone. Esta
   funcionalidade resulta na localização do equipamento em um mapa.
 
+# Fluxo
+
+  Servico 1 : Producer
+  
+     1 - Recebemos os valores que sao inseridos em tela
+     2 - Adicionamos essa informacao em um banco embarcado (h2)
+     3 - Persistimos essa informacao dentro de uma fila apos 10s
+     
+  Servico 2: Consumer
+  
+     1 - Consumimos a mensagem da fila
+     2 - Executamos a regra de Temperatura >= 35 e umidade <= 15 no momento em que existe dados na fila
+     3 - Encaminhamos o email 
+     
+     
+ 
+
+
 # Imagem RabbitMQ
 
 Instale a imagem do RabbitMQ com docker
