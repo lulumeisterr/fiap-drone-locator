@@ -43,30 +43,27 @@ Painel do RabbitMQ
   - user e password : guest
   
 # H2
-    - Macos : jdbc:h2:~/fiapDroneDatabase;DB_CLOSE_ON_EXIT=FALSE
-    - Windows : jdbc:h2:file:/home/#userexemplo/fiapDroneDatabase
-    
-  Interface
-    - H2 Console : http://localhost:8080/h2-console/
+    - Macos : jdbc:h2:~/fiapstockdatabase;DB_CLOSE_ON_EXIT=FALSE
+    - Windows : jdbc:h2:file:/home/#userexemplo/fiapstockdatabase
+    - H2 Console : http://localhost:8081/h2-console/
 
-# Endpoint para persistir os dados de tela
-
-- localhost:8080/drones/
-- Body / Method Post
-
-    {
-        "id": 1,
-        "latitude": 11,
-        "longitude": 111,
-        "temperatura": 30,
-        "umidade": 40
-    }
+# EndPoint para criar um registro do drone
+  
+  -> POST : localhost:8080/drones/
+  -> BODY :
+            {
+                "id": 1,
+                "latitude": 11,
+                "longitude": 111,
+                "temperatura": 30,
+                "umidade": 40
+               }
 
 
-# Endpoint para publicar na fila
+# EndPoint para publicar na fila
 
-- localhost:8001/send
-- Body / Method Post
+-> POST : localhost:8001/send
+-> Body : Method Post
 
       {
         "text" : {
