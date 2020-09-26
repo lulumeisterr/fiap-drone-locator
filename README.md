@@ -27,8 +27,8 @@ Painel do RabbitMQ
       "text" : {
         "temperatura" : 20.0,
         "umidade" : 10.0
+       }
       }
-    }
     
 # Usando o Exchange Direct 
 
