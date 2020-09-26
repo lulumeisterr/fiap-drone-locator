@@ -1,5 +1,7 @@
 package br.com.fiap.consumer.service.implementation;
 
+import java.util.concurrent.TimeUnit;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +34,10 @@ public class ConsumerServiceImpl implements ConsumerService{
 					.append(" ID DO DRONE : " + message.getText().getIdDrone()).append("\n")
 					.append(" Temperatura : " + message.getText().getTemperatura()).append("\n")
 					.append(" Umidade : " + message.getText().getUmidade());
+			
+			
+			System.out.println("Aguardando 1m para encaminhar o email");
+			TimeUnit.MINUTES.sleep(1);
 			
 			System.out.println("Encaminhando Email");
 			email.sendEmail(msgEmail.toString());
