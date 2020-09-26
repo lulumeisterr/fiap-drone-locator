@@ -45,7 +45,9 @@ Painel do RabbitMQ
 # H2
     - Macos : jdbc:h2:~/fiapDroneDatabase;DB_CLOSE_ON_EXIT=FALSE
     - Windows : jdbc:h2:file:/home/#userexemplo/fiapDroneDatabase
-    - H2 Console : http://localhost:8081/h2-console/
+    
+  Interface
+    - H2 Console : http://localhost:8080/h2-console/
 
 # Endpoint para persistir os dados de tela
 
