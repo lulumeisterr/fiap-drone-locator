@@ -14,8 +14,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class RabbitReceviedConfiguration {
-
-
+	
 	@Bean
 	public MessageConverter jsonConverter() {
 		return new Jackson2JsonMessageConverter();

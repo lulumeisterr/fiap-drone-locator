@@ -1,32 +1,26 @@
 package br.com.fiap.consumer.dto;
 
-/**
- * Classe DTO
- * @author lucasrodriguesdonascimento
- *
- */
 public class Message {
-	
-	private String text;
-	
-	
+
+	private Text text;
+
 	public Message() {
-		
+
 	}
 
-	public Message(String text) {
+	public Message(Text text) {
 		super();
 		this.text = text;
 	}
 
-	public String getText() {
+	public Text getText() {
 		return text;
 	}
 
-	public void setText(String text) {
+	public void setText(Text text) {
 		this.text = text;
 	}
-	
-	
+
+
 
 }

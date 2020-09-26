@@ -10,7 +10,7 @@ public class ConsumerServiceImpl implements ConsumerService{
 
 	@Override
 	public void action(Message message) throws Exception {
-		System.out.println(message.getText());
+		System.out.println("Temperatura : "+ message.getText().getTemperatura() + " E " + " Umidade : " + message.getText().getUmidade());
 	}
 
 }
