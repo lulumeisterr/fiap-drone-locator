@@ -20,7 +20,7 @@
   
      1 - Consumimos a mensagem da fila
      2 - Executamos a regra de Temperatura >= 35 e umidade <= 15 no momento em que existe dados na fila
-     3 - Encaminhamos o email 
+     3 - Encaminhamos o email apos 1 minuto de espera
      
      
  
@@ -61,3 +61,10 @@ Painel do RabbitMQ
 
 - Ao Executar o projeto as filas sao criadas automaticamente
 - Criacao do exchange do tipo direct que recebe a mensagem enviada pelo produtor e encaminha a mensagem para a fila destinada do produtor.
+
+
+# Usando patterns de deadLetter
+  
+  - Caso o consumidor esteja inativo , nos atribuimos todas as mensagens 
+  que nao foi realizada para uma fila de espera , podendo ser movidas novamente para serem consumidas
+ 
