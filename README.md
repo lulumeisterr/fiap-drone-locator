@@ -10,7 +10,7 @@
 
 # Fluxo
 
-  Servico 1 : Producer
+  Servico 1 : Producer/Drone
   
      1 - Recebemos os valores que sao inseridos em tela
      2 - Adicionamos essa informacao em um banco embarcado (h2)
@@ -21,6 +21,9 @@
      1 - Consumimos a mensagem da fila
      2 - Executamos a regra de Temperatura >= 35 e umidade <= 15 no momento em que existe dados na fila
      3 - Encaminhamos o email apos 1 minuto de espera
+     
+  
+  Servico 3: Localizacao google maps
      
      
  
