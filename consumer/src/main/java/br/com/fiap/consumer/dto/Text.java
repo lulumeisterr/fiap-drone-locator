@@ -2,6 +2,8 @@ package br.com.fiap.consumer.dto;
 
 public class Text {
 
+	private Long idDrone;
+	
 	private Double temperatura;
 
 	private Double umidade;
@@ -21,5 +23,15 @@ public class Text {
 	public void setUmidade(Double umidade) {
 		this.umidade = umidade;
 	}
+
+	public Long getIdDrone() {
+		return idDrone;
+	}
+
+	public void setIdDrone(Long idDrone) {
+		this.idDrone = idDrone;
+	}
+	
+	
 
 }

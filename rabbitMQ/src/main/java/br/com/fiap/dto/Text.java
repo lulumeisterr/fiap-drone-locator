@@ -5,6 +5,16 @@ public class Text {
 	private Double temperatura;
 
 	private Double umidade;
+	
+	private Long idDrone;
+	
+	public Long getIdDrone() {
+		return idDrone;
+	}
+
+	public void setIdDrone(Long idDrone) {
+		this.idDrone = idDrone;
+	}
 
 	public Double getTemperatura() {
 		return temperatura;

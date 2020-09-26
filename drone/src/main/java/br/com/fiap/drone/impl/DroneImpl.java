@@ -72,17 +72,17 @@ dados são enviados para um serviço de mensagens
 	 * @param droneP
 	 */
 	private void encaminhandoDadosParaFila(DronePresenter droneP) {
-		
+
 		RestTemplate restTemplate = new RestTemplate();
-		
+
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-					
+
 				try {
-					
+
 					TimeUnit.SECONDS.sleep(10);
-					
+
 					logger.info("Nome: " + Thread.currentThread().getName());
 					logger.info("Prioridade: " + Thread.currentThread().getPriority());
 					logger.info("Estado: " + Thread.currentThread().getState());
@@ -90,7 +90,7 @@ dados são enviados para um serviço de mensagens
 					String json = null;
 					ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
 
-					Message message = new Message(new Text(droneP.getTemperatura(),droneP.getUmidade()));
+					Message message = new Message(new Text(droneP.getTemperatura(),droneP.getUmidade(), droneP.getId()));
 
 					HttpHeaders headers = new HttpHeaders();
 					headers.setContentType(MediaType.APPLICATION_JSON);
@@ -98,9 +98,9 @@ dados são enviados para um serviço de mensagens
 					json = ow.writeValueAsString(message);
 					HttpEntity<String> request = new HttpEntity<String>(json, headers);       
 					ResponseEntity<String> response = restTemplate.postForEntity( urlProducerRabbitMQ, request , String.class );
-					
+
 					logger.info("ENCAMINHANDO MSG PARA FILA : " + json + "Status da requisicao " + response.getStatusCode());
-					
+
 				} catch (JsonProcessingException e) {
 					e.printStackTrace();
 				} catch (ResponseStatusException e) {
