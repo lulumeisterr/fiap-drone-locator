@@ -1,5 +1,6 @@
 package br.com.fiap.drone.impl;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.logging.log4j.LogManager;
@@ -111,6 +112,11 @@ dados são enviados para um serviço de mensagens
 
 			}
 		}).start();
+	}
+
+	@Override
+	public List<Drone> findAllDrone() {
+		return droneRepository.findAll();
 	}
 
 }

@@ -1,49 +1,54 @@
 package br.com.fiap.consumer.service.impl;
 
-import br.com.fiap.consumer.dto.Message;
-import br.com.fiap.consumer.service.CheckSensorsService;
-import br.com.fiap.consumer.service.MailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
-import java.util.concurrent.TimeUnit;
+import br.com.fiap.consumer.dto.Text;
+import br.com.fiap.consumer.service.CheckSensorsService;
+import br.com.fiap.consumer.service.MailService;
 
 @Service
 public class CheckSensorsServiceImpl implements CheckSensorsService {
 
-    Logger logger= LoggerFactory.getLogger(CheckSensorsServiceImpl.class);
+	Logger logger= LoggerFactory.getLogger(CheckSensorsServiceImpl.class);
 
-    private MailService mailService;
+	private MailService mailService;
 
-    CheckSensorsServiceImpl(MailService mailService){
-        this.mailService = mailService;
-    }
+	@Value(value = "${url.listar.drone}")
+	private String url;
 
-    @Override
-    public void checkSensors() {
-        logger.info("checking sensors");
-        // TODO fazer busca na base de dados dos sensores, lendo o ultimo minuto e validando a regra
-    }
+	//Configurar um bean para o restTemplate
+	private RestTemplate restTemplate = new RestTemplate();
 
-    // teste
-    private void regra(Message message) throws InterruptedException {
-        if(message.getText().getTemperatura() >= 35 || message.getText().getTemperatura() <= 0
-                || message.getText().getUmidade() <= 15){
+	CheckSensorsServiceImpl(MailService mailService){
+		this.mailService = mailService;
+	}
 
-            StringBuilder msgEmail = new StringBuilder()
-                    .append(" ID DO DRONE : " + message.getText().getIdDrone()).append("\n")
-                    .append(" Temperatura : " + message.getText().getTemperatura()).append("\n")
-                    .append(" Umidade : " + message.getText().getUmidade());
+	@Override
+	public void checkSensors() {
+		logger.info("checking sensors");
+		// TODO fazer busca na base de dados dos sensores, lendo o lidar  e validando a regra
 
-            System.out.println("Aguardando 1m para encaminhar o email");
-            TimeUnit.MINUTES.sleep(1);
+		ResponseEntity<Text[]> response = restTemplate.getForEntity(url, Text[].class);
+		
+//		for (Text message : response.getBody()) {
+//			if(message.getTemperatura() >= 35 || message.getTemperatura() <= 0
+//					|| message.getUmidade() <= 15){
+//
+//				StringBuilder msgEmail = new StringBuilder()
+//						.append(" ID DO DRONE : " + message.getId()).append("\n")
+//						.append(" Temperatura : " + message.getTemperatura()).append("\n")
+//						.append(" Umidade : " + message.getUmidade());
+//
+//				mailService.sendEmail(msgEmail.toString());
+//			}else {
+//				logger.info("Sem Email para encaminhar");
+//			}
+		}
+	
+	}
 
-            System.out.println("Encaminhando Email");
-            mailService.sendEmail(msgEmail.toString());
-        } else {
-            System.out.println("Sem Emails para encaminhar");
-        }
-    }
-
-}

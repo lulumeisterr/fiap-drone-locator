@@ -7,6 +7,9 @@ import org.springframework.boot.autoconfigure.amqp.SimpleRabbitListenerContainer
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 /**
  * Retornar Json tratado recebido da Fila
  * @author lucasrodriguesdonascimento
@@ -14,6 +17,14 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class RabbitReceviedConfiguration {
+	
+	@Bean
+	public ObjectMapper objectMapper() {
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+		return mapper;
+	}
+	
 	
 	@Bean
 	public MessageConverter jsonConverter() {
